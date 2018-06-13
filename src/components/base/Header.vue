@@ -50,7 +50,7 @@
       methods:{
         choose(name){
           if(name === "1"){
-            this.$router.push({path: '/home'});
+            this.$router.push({path:'/home/cardManagement'})
           }else if(name === "2") {
             this.$router.push({path: '/checkNumber'})
           }else if(name === "3"){

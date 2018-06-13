@@ -653,11 +653,11 @@
           let _end = index * this.pageSize;
           this.historyData = this.initData.slice(_start,_end);
         },
-        plus(){
-          return  this.flag = !this.flag;
-        }
       },
-        components: {}
+      components: {},
+      created(){
+        this.getData()
+      }
     }
 </script>
 

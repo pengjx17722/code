@@ -620,46 +620,46 @@
       }
     },
     methods:{
-      show(index){
-        //查看
-        this.$Modal.info({
-          content: `姓名：${this.historyData[index].name}<br>年龄：${this.historyData[index].age}<br>
-                    地址：${this.historyData[index].address}<br>开通日期:${this.historyData[index].date}<br>
-                    结束日期:${this.historyData[index].endDate}`
-        })
-      },
-      remove(index){
-        //编辑
-        this.historyData.splice(index, 1);
-      },
-      // 获取历史记录信息
-      getData(val){
-        // 保存取到的所有数据
-        if(val){
-          testData.datas = testData.datas.filter(item=>item.name===val || item.age===Number(val));
-          this.initData = testData.datas;
-          this.dataCount = this.initData.length
-        }else{
-          this.initData = testData.datas;
-          this.dataCount = testData.datas.length;
-        }
-        // 初始化显示，小于每页显示条数，全显，大于每页显示条数，取前每页条数显示
-        if(testData.datas.length < this.pageSize){
-          this.historyData = this.initData;
-        }else{
-          this.historyData = this.initData.slice(0,this.pageSize);
-        }
-      },
-      changepage(index){
-        let _start = ( index - 1 ) * this.pageSize;
-        let _end = index * this.pageSize;
-        this.historyData = this.initData.slice(_start,_end);
-      },
-      plus(){
-        return  this.flag = !this.flag;
-      }
+        show(index){
+          //查看
+          this.$Modal.info({
+            content: `姓名：${this.historyData[index].name}<br>年龄：${this.historyData[index].age}<br>
+                      地址：${this.historyData[index].address}<br>开通日期:${this.historyData[index].date}<br>
+                      结束日期:${this.historyData[index].endDate}`
+          })
+        },
+        remove(index){
+          //编辑
+          this.historyData.splice(index, 1);
+        },
+        // 获取历史记录信息
+        getData(val){
+          // 保存取到的所有数据
+          if(val){
+            testData.datas = testData.datas.filter(item=>item.name===val || item.age===Number(val));
+            this.initData = testData.datas;
+            this.dataCount = this.initData.length
+          }else{
+            this.initData = testData.datas;
+            this.dataCount = testData.datas.length;
+          }
+          // 初始化显示，小于每页显示条数，全显，大于每页显示条数，取前每页条数显示
+          if(testData.datas.length < this.pageSize){
+            this.historyData = this.initData;
+          }else{
+            this.historyData = this.initData.slice(0,this.pageSize);
+          }
+        },
+        changepage(index){
+          let _start = ( index - 1 ) * this.pageSize;
+          let _end = index * this.pageSize;
+          this.historyData = this.initData.slice(_start,_end);
+        },
     },
-    components: {}
+    components: {},
+    created(){
+      this.getData()
+    }
   }
 </script>
 

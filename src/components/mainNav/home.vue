@@ -2,7 +2,7 @@
   <div class="h100">
     <sidebar></sidebar>
     <div class="maincontent fl mar-t10">
-      <router-view></router-view>
+      <router-view ></router-view>
     </div>
   </div>
 </template>
@@ -20,6 +20,7 @@
       },
       created(){
         this.$router.push({path:'/home/cardManagement'})
+
       }
     }
 </script>

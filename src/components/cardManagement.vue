@@ -48,7 +48,7 @@
       </div>
       <div class="fl mar-t15">
         <Button  type="info" size="small" @click="showButton" style="float:left;width:70px;margin-left: 10px;">更多选项</Button>
-        <Button type="primary" size="small" @click="getData(value)" style="float:left;margin-left: 10px;width:50px;">查询</Button>
+        <Button type="primary" size="small" @click="filter(value)" style="float:left;margin-left: 10px;width:50px;">查询</Button>
       </div>
     </div>
     <h3>号码列表</h3>
@@ -57,7 +57,7 @@
       <Page :total="dataCount" :page-size="pageSize" show-total size="small" show-elevator @on-change="changepage"  class="pages"></Page>
       <!--<Button type="primary" size="small" style="margin-top: -13px;margin-left: 5px">跳到</Button>-->
     </div>
-    <cardInfo :formdata="params" v-show="flag" @flags="flags"></cardInfo>
+    <cardInfo :formdata.sync="params" v-show="flag" @flags="flags" ></cardInfo>
   </div>
 </template>
 
@@ -634,14 +634,14 @@
           },
           {
             title: '开户时间',
-            key: 'age',
+            key: 'date',
             width:220,
             sortable: true,
             align: 'center'
           },
           {
             title: '激活时间',
-            key: 'age',
+            key: 'endDate',
             width:140,
             sortable: true,
             align: 'center'
@@ -662,7 +662,7 @@
                   },
                   on: {
                     click: () => {
-                      this.show(params.row,params.index)
+                      this.show(params,params.index)
                     }
                   }
                 }, '查看'),
@@ -694,19 +694,19 @@
         console.log(selection)
       },
       flags(){
-        this.flag = false
+       this.flag=!this.flag
       },
       //查看
       show(params,index){
-        //将所点击行数据储存
-        this.params = params;
-        this.flag = !this.flag
+        //储存所点击行的数据
+        this.params = params.row;
+        this.flag = !this.flag;
+        console.log(this.params,index)
       },
       //编辑
       edit(params,index){
         // this.historyData.splice(index, 1);
         console.log(2);
-        console.log(this.historyData,this.params)
       },
       // 获取历史记录信息
       getData(val){
@@ -733,7 +733,13 @@
       },
     },
     components:{cardInfo},
+    created(){
+      this.getData();
+      this.$axios.get('/cardinfo/pageList')
+        .then(res=>{
 
+        })
+    }
   }
 </script>
 

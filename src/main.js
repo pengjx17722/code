@@ -10,7 +10,7 @@ import 'iview/dist/styles/iview.css'
 Vue.config.productionTip = false;
 Vue.use(iView);
 Vue.use(router);
-Vue.prototype.$_api = Axios;
+Vue.prototype.$axios = Axios;
     /* eslint-disable no-new */
 new Vue({
     el: '#app',

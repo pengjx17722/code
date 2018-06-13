@@ -1,4 +1,4 @@
-  import Vue from "vue";
+import Vue from "vue";
 import Axios from "axios"; //引入axios插件
 import { API_ROOT, CONTENT_TYPE, COMPANY_KEY } from "./config"; //引入axios全局配置
 const REQUEST = Axios.create(); //创建一个axios对象
@@ -41,7 +41,7 @@ const service = {
     },
     get(url, data) {
         return REQUEST({
-                // url: url, //二级路径，会加baseURL后面，即'http://api.shinemonitor.com/public/+url。
+                url: url, //二级路径，会加baseURL后面，即'http://api.shinemonitor.com/public/+url。
                 // 如果url =/api/system/login，即'http://api.shinemonitor.com/public/api/system/login这种形式
                 method: "get", //请求类型是post还是get还是put
                 params: data //请求参数。params是会将参数直接加url后面，data则会放在post请求体里面，即post请求的body里面
@@ -60,12 +60,12 @@ const service = {
             .catch(error => this.handleError(error));
     },
     handleSucc(result) {
-        // console.log(result)
+        console.log(result.data.dat.list)
         console.log('请求成功..');
 
     },
     handleError(error) {
-        // console.log(error);
+      console.log(error);
       console.log('请求错误..')
 
     },
